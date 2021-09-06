@@ -6,66 +6,100 @@ using namespace std;
 
 string s;
 
-int prise(int i, char c1, char c2){
-	if(isdigit(c2)){
-		if(c1 == '*') return i * 2;
+int func_S(int a, int i){
+    if(s[i + 1] == '*'){
+        a *= 2;
+        if(s[i + 2] == '*')
+            a *= 2;
+        else if(s[i + 2] == '#')
+            a *= -1;
+    }
+    
+    else if(s[i + 1] == '#'){
+        a *= -1;
+        if(s[i + 2] == '*')
+            a *= 2;
+    }
+    return a;
+}
 
-		else if(c1 == '#') return -i;
-	}
+int func_D(int a, int i){
+    a = pow(a, 2);
+    if(s[i + 1] == '*'){
+        a *= 2;
+        if(s[i + 2] == '*')
+            a *= 2;
+        else if(s[i + 2] == '#')
+            a *= -1;
+    }
+    
+    else if(s[i + 1] == '#'){
+        a *= -1;
+        if(s[i + 2] == '*')
+            a *= 2;
+    }
+    return a;
+}
 
-	else{
-		
-		if(c1 == '*'){
-			if(c2 == '*') return i * 4;
-			
-			else if(c2 == '#') return -i * 2;
-		}
-
-		if(c1 == '#'){
-			if(c2 == '*') return -i * 2;
-
-		return -i;
-		}
-	}
+int func_T(int a, int i){
+    a = pow(a,3);
+    if(s[i + 1] == '*'){
+        a *= 2;
+        if(s[i + 2] == '*')
+            a *= 2;
+        else if(s[i + 2] == '#')
+            a *= -1;
+    }
+    
+    else if(s[i + 1] == '#'){
+        a *= -1;
+        if(s[i + 2] == '*')
+            a *= 2;
+    }
+    return a;
 }
 
 int solution(string dartResult) {
-    int answer = 0;
-   	for(int i=0; i<dartResult.size(); i++){
-		if(s[i] == 'S' || s[i] == 'D' || s[i] == 'T'){
-			
-			int tmp = stoi(s[i-1]);
-
-			if(s[i] == 'S'){
-				tmp = stoi(s[i-1]);
-				if(!isdigit(s[i+1])) answer += prise(tmp, s[i+1], s[i+2]);
-
-				else answer += tmp;
-			}
-
-			else if(s[i] == 'D'){
-				s[i] = tmp * 2;
-
-				if(!isdigit(s[i+1])) answer += prise(tmp, s[i+1], s[i+2]);
-
-				else answer += tmp * 2;
-			}
-
-			else if(s[i] == 'T'){
-				s[i] = tmp * 3;
-				if(!isdigit(s[i+1])) answer += prise(tmp, s[i+1], s[i+2]);
-
-				else answer += tmp * 3;
-			}
-		}
-	}
-	return answer;
+    
+    s = dartResult;
+    
+    int answer = 0, tmp, size = dartResult.size();
+    
+    for(int i=0; i<size; i++){
+        
+        if(dartResult[i] == 'S'){
+            
+            tmp = dartResult[i-1] - '0';
+            
+            if(!isdigit(dartResult[i - 2])) answer += func_S(tmp, i);
+            
+            else answer += func_S(10, i);
+        }
+        
+        else if(dartResult[i] == 'D'){
+            tmp = dartResult[i-1] - '0';
+            
+            if(!isdigit(dartResult[i - 2])) answer += func_D(tmp, i);
+            
+            else answer += func_D(10, i);
+        }
+        
+        else if(dartResult[i] == 'T'){
+            tmp = dartResult[i-1] - '0';
+            
+            if(!isdigit(dartResult[i - 2])) answer += func_T(tmp, i);
+            
+            else answer += func_T(10, i);
+        }
+		cout << answer << endl;
+    }
+    return answer;
 }
 
 int main(void){
 	
 	cin >> s;
-	cout << solution(s);
+	cout << solution(s) << endl;
 	
 	return 0;
 }
