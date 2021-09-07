@@ -5,57 +5,124 @@
 using namespace std;
 
 string s;
+int i_keep;
 
 int func_S(int a, int i){
-    if(s[i + 1] == '*'){
-        a *= 2;
-        if(s[i + 2] == '*')
-            a *= 2;
+	if(i_keep != 10){
+		if(s[i + 1] == '*'){
+   		     a *= 2 + i_keep;
+   	    if(s[i + 2] == '*')
+            a *= 2 + i_keep * 2;
         else if(s[i + 2] == '#')
             a *= -1;
-    }
+    	}
     
-    else if(s[i + 1] == '#'){
-        a *= -1;
+   		else if(s[i + 1] == '#'){
+       		a *= -1;
         if(s[i + 2] == '*')
             a *= 2;
-    }
+    	}
+	}
+
+
+	else if(i_keep == 10){
+		if(s[i + 1] == '*'){
+   		     a *= 2 + i_keep;
+   	    if(s[i + 2] == '*')
+            a *= 2 + i_keep * 2;
+        else if(s[i + 2] == '#')
+            a *= -1;
+    	}
+    
+   		else if(s[i + 1] == '#'){
+       		a *= -1;
+        if(s[i + 2] == '*')
+            a *= 2;
+    	}
+	}
+
+	i_keep = i;
+
     return a;
 }
 
 int func_D(int a, int i){
     a = pow(a, 2);
-    if(s[i + 1] == '*'){
-        a *= 2;
-        if(s[i + 2] == '*')
-            a *= 2;
+	if(i_keep != 10){
+		if(s[i + 1] == '*'){
+   		     a *= 2 + i_keep;
+   	    if(s[i + 2] == '*')
+            a *= 2 + i_keep * 2;
         else if(s[i + 2] == '#')
             a *= -1;
-    }
+    	}
     
-    else if(s[i + 1] == '#'){
-        a *= -1;
+   		else if(s[i + 1] == '#'){
+       		a *= -1;
         if(s[i + 2] == '*')
             a *= 2;
-    }
+    	}
+	}
+
+
+	else if(i_keep == 10){
+		if(s[i + 1] == '*'){
+   		     a *= 2 + i_keep;
+   	    if(s[i + 2] == '*')
+            a *= 2 + i_keep * 2;
+        else if(s[i + 2] == '#')
+            a *= -1;
+    	}
+    
+   		else if(s[i + 1] == '#'){
+       		a *= -1;
+        if(s[i + 2] == '*')
+            a *= 2;
+    	}
+	}
+
+	i_keep = i;
+
     return a;
 }
 
 int func_T(int a, int i){
     a = pow(a,3);
-    if(s[i + 1] == '*'){
-        a *= 2;
-        if(s[i + 2] == '*')
-            a *= 2;
+	if(i_keep != 10){
+		if(s[i + 1] == '*'){
+   		     a *= 2 + i_keep;
+   	    if(s[i + 2] == '*')
+            a *= 2 + i_keep * 2;
         else if(s[i + 2] == '#')
             a *= -1;
-    }
+    	}
     
-    else if(s[i + 1] == '#'){
-        a *= -1;
+   		else if(s[i + 1] == '#'){
+       		a *= -1;
         if(s[i + 2] == '*')
             a *= 2;
-    }
+    	}
+	}
+
+
+	else if(i_keep == 10){
+		if(s[i + 1] == '*'){
+   		     a *= 2 + i_keep;
+   	    if(s[i + 2] == '*')
+            a *= 2 + i_keep * 2;
+        else if(s[i + 2] == '#')
+            a *= -1;
+    	}
+    
+   		else if(s[i + 1] == '#'){
+       		a *= -1;
+        if(s[i + 2] == '*')
+            a *= 2;
+    	}
+	}
+
+	i_keep = i;
+
     return a;
 }
 
@@ -91,7 +158,6 @@ int solution(string dartResult) {
             
             else answer += func_T(10, i);
         }
-		cout << answer << endl;
     }
     return answer;
 }
