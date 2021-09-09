@@ -31,7 +31,7 @@ int solution(int n){
 	
 	int num = bitset<20>(n).count();
 
-	while(bitsey<20>(++n).count() != num);
+	while(bitset<20>(++n).count() != num);
 
 	return n;
 }
