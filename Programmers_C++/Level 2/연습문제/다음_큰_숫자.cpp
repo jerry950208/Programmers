@@ -22,3 +22,16 @@ int solution(int n) {
             return n;
     }
 }
+
+//----------------------------------------------간단한 코딩
+#include <bitset>
+using namespace std;
+
+int solution(int n){
+	
+	int num = bitset<20>(n).count();
+
+	while(bitsey<20>(++n).count() != num);
+
+	return n;
+}
