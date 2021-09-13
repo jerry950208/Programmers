@@ -1,5 +1,32 @@
-#include <iostream>
+#include <iosteam>
+#include <string>
+#include <cmath>
+using namespace std;
 
+int solution(string dartResult) {
+    int answer = 0;
+    
+	for(int i=0; i<dartResult.size(); i++){
+		
+		if(dartResult[i] == 'S')
+
+		else if(dartResult[i] == 'D')
+
+		else if(dartResult[i] == 'T')
+	}
+	return answer;
+}
+
+int main(void){
+
+	string s;
+	cin >> s;
+
+	cout << solution(s) << endl;
+	return 0;
+}
+/*
+#include <iostream>
 #include <string>
 #include <cmath>
 using namespace std;
@@ -102,4 +129,4 @@ int main(void){
 	cin >> input;
 	cout << solution(input) << endl;
 	return 0;
-}
+}*/
