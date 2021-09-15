@@ -20,6 +20,54 @@
 0~10의 정수와 문자 S, D, T, *, #로 구성된 문자열이 입력될 시 총점수를 반환하는 함수를 작성하라.
 */
 #include <string>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+int solution(string dartResult) {
+    
+    int answer = 0, idx = 0;
+    vector <int> score;
+    
+    for(int i=0; i<dartResult.size(); i++){
+//S, D, T--------------------------------------------
+        if(dartResult[i] == 'S'){}
+        
+        else if(dartResult[i] == 'D')
+            score[idx - 1] = pow(score[idx - 1], 2);
+        
+        else if(dartResult[i] == 'T')
+            score[idx - 1] = pow(score[idx - 1], 3);
+//prise----------------------------------------------
+        else if(dartResult[i] == '*'){
+            score[idx - 1] *= 2;
+            if(idx > 1)
+                score[idx - 2] *= 2;
+        }
+            
+        else if(dartResult[i] == '#')
+            score[idx - 1] *= -1;
+//number---------------------------------------------
+        else{
+            if(dartResult[i + 1] == '0'){
+                score.push_back(10);
+                i++;
+            }
+            else{
+                score.push_back(dartResult[i] - '0');
+                idx++;               
+            }
+
+        }
+    }
+    
+    for(int i=0; i<score.size(); i++)
+        answer += score[i];
+    
+    return answer;
+}
+/*
+#include <string>
 #include <cmath>
 using namespace std;
 
@@ -62,4 +110,4 @@ int solution(string dartResult) {
         answer += score[i];
     
     return answer;
-}
+}*/
