@@ -25,89 +25,40 @@
 using namespace std;
 
 int solution(string dartResult) {
-    
-    int answer = 0, idx = 0;
-    vector <int> score;
-    
-    for(int i=0; i<dartResult.size(); i++){
-//S, D, T--------------------------------------------
-        if(dartResult[i] == 'S'){}
-        
-        else if(dartResult[i] == 'D')
-            score[idx - 1] = pow(score[idx - 1], 2);
-        
-        else if(dartResult[i] == 'T')
-            score[idx - 1] = pow(score[idx - 1], 3);
-//prise----------------------------------------------
-        else if(dartResult[i] == '*'){
-            score[idx - 1] *= 2;
-            if(idx > 1)
-                score[idx - 2] *= 2;
-        }
-            
-        else if(dartResult[i] == '#')
-            score[idx - 1] *= -1;
-//number---------------------------------------------
-        else{
-            if(dartResult[i + 1] == '0'){
-                score.push_back(10);
-                i++;
-            }
-            else{
-                score.push_back(dartResult[i] - '0');
-                idx++;               
-            }
+	int answer = 0, idx = 0;
+	vector <int> score;
 
-        }
-    }
-    
-    for(int i=0; i<score.size(); i++)
-        answer += score[i];
-    
-    return answer;
+	for (int i = 0; i < dartResult.size(); i++) {
+		if (dartResult[i] == 'S') {}
+
+        else if (dartResult[i] == 'D')
+			score[idx - 1] = pow(score[idx - 1], 2);
+
+		else if (dartResult[i] == 'T')
+			score[idx - 1] = pow(score[idx - 1], 3);
+
+		else if (dartResult[i] == '*') {
+			score[idx - 1] *= 2;
+			if (idx > 1)
+				score[idx - 2] *= 2;
+		}
+
+		else if (dartResult[i] == '#')
+			score[idx - 1] *= -1;
+
+		else {
+			if (dartResult[i + 1] == '0') {
+				score.push_back(10);
+				i++;
+			}
+			else
+				score.push_back(dartResult[i] - '0');
+			idx++;
+		}
+	}
+
+	for (int i = 0; i < score.size(); i++)
+		answer += score[i];
+
+	return answer;
 }
-/*
-#include <string>
-#include <cmath>
-using namespace std;
-
-int solution(string dartResult) {
-    
-    int answer = 0, score[3] = { 0 }, idx = 0;
-    
-    for(int i=0; i<dartResult.size(); i++){
-        
-        if(dartResult[i] == 'S'){}
-        
-        else if(dartResult[i] == 'D')
-            score[idx - 1] = pow(score[idx - 1], 2);
-        
-        else if(dartResult[i] == 'T')
-            score[idx - 1] = pow(score[idx - 1], 3);
-        
-        else if(dartResult[i] == '*'){
-            score[idx - 1] *= 2;
-            if(idx > 1)
-                score[idx - 2] *= 2;
-        }
-            
-        else if(dartResult[i] == '#')
-            score[idx - 1] *= -1;
-        
-        else{
-            if(dartResult[i + 1] == '0'){
-                score[idx] = 10;
-                i++;
-            }
-            else{
-                score[idx] = dartResult[i] - '0'; 
-                idx++;
-            }
-        }
-    }
-    
-    for(int i=0; i<3; i++)
-        answer += score[i];
-    
-    return answer;
-}*/
