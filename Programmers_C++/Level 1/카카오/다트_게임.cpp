@@ -29,6 +29,8 @@ int solution(string dartResult) {
 	vector <int> score;
 
 	for (int i = 0; i < dartResult.size(); i++) {
+
+	//---------------------------------------------score
 		if (dartResult[i] == 'S') {}
 
         else if (dartResult[i] == 'D')
@@ -36,7 +38,9 @@ int solution(string dartResult) {
 
 		else if (dartResult[i] == 'T')
 			score[idx - 1] = pow(score[idx - 1], 3);
+		
 
+		//---------------------------------------prise
 		else if (dartResult[i] == '*') {
 			score[idx - 1] *= 2;
 			if (idx > 1)
@@ -45,7 +49,8 @@ int solution(string dartResult) {
 
 		else if (dartResult[i] == '#')
 			score[idx - 1] *= -1;
-
+		
+		//---------------------------------------number
 		else {
 			if (dartResult[i + 1] == '0') {
 				score.push_back(10);
@@ -62,3 +67,64 @@ int solution(string dartResult) {
 
 	return answer;
 }
+
+//다른 사람의 풀이 : switch문 사용
+//훨씬 깔끔하다
+
+/*
+#include <string>
+#include <sstream>
+#include <cmath>
+
+using namespace std;
+
+int solution(string dartResult) {
+    stringstream ss(dartResult);
+
+    int sum[3] = { 0, 0, 0 };
+    int options[3] = { 1, 1, 1 };
+    for (int i = 0; i < 3; i++) {
+        int score;
+        char bonus;
+        char option;
+
+        ss >> score;
+
+        bonus = ss.get();
+        option = ss.get();
+
+        if (option != '*' && option != '#') {
+            ss.unget();
+        }
+
+        switch (bonus) {
+        case 'S':
+            sum[i] += pow(score, 1);
+            break;
+        case 'D':
+            sum[i] += pow(score, 2);
+            break;
+        case 'T':
+            sum[i] += pow(score, 3);
+            break;
+        default:
+            break;
+        }
+
+        switch (option) {
+        case '*':
+            if (i > 0 && options[i - 1]) options[i - 1] *= 2;
+            options[i] *= 2;
+            break;
+        case '#':
+            options[i] = -options[i];
+            break;
+        default:
+            break;
+        }
+    }
+
+    return sum[0] * options[0] + sum[1] * options[1] + sum[2] * options[2];
+}
+
+*/
