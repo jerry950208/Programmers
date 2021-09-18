@@ -1,19 +1,26 @@
 #include <iostream>
-#include <vector>
+#include <cmath>
 using namespace std;
 
-vector<int> func_number(int change_num, int n){
-	vectorr<int> output;
-	while(n > 1){
-		
+int binary_num(int n){
+	
+	int output = 0;
+	
+	for(int i=1; n>0; i*=10){
+		int binary = n % 2;
+		output += binary * i;
+		n /= 2;
 	}
 
 	return output;
 }
 
 int main(void){
-	int n;
-	cin >> n;
-	cout << func_number(2, n);
+	
+	int input;
+	cin >> input;
+
+	cout << binary_num(input) << endl;
+
 	return 0;
 }
