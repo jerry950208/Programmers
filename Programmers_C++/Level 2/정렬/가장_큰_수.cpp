@@ -3,22 +3,28 @@
 #include <algorithm>
 using namespace std;
 
-int cmp(const void* a, const void* b){
-    if(*(int*)a > *(int*)b)
-        return -1;
-    else if(*(int*)a < *(int*)b)
-        return 1;
-    else
-        return 0;
+bool cmp(string a, string b){
+    if(a + b > b + a)
+        return true;
+    else 
+        return false;
 }
 
 string solution(vector<int> numbers) {
     string answer = "";
+    vector<string> v;
+    for(int i=0; i<numbers.size(); i++)
+        v.push_back(to_string(numbers[i]));
     
-    qsort(numbers, numbers.size(), sizeof(int), cmp);
+    sort(v.begin(), v.end(), cmp);
     
-    for(int i=0; i<numbers.size(); i++){
-        answer += numbers[i];
-    }
+    for(int i=0; i<numbers.size(); i++)
+        answer += v[i];
+    
+    if(answer[0] == '0')
+    	answer = "0";
+    
     return answer;
 }
+
+
