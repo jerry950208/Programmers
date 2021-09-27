@@ -1,20 +1,24 @@
 #include <string>
 #include <vector>
-
+#include <algorithm>
 using namespace std;
 
-int solution(vector<int> numbers) {
-    int answer = 0;
-    int max = 0; 
-    int cnt = 0;
+int cmp(const void* a, const void* b){
+    if(*(int*)a > *(int*)b)
+        return -1;
+    else if(*(int*)a < *(int*)b)
+        return 1;
+    else
+        return 0;
+}
+
+string solution(vector<int> numbers) {
+    string answer = "";
     
-    while(cnt == numbers.size()){
-        for(int i=0; i<numbers.size(); i++){
-            if(max < numbers[i])
-                max = numbers[i];
-        }
-        cnt++;
-        answer = 10 + max;
+    qsort(numbers, numbers.size(), sizeof(int), cmp);
+    
+    for(int i=0; i<numbers.size(); i++){
+        answer += numbers[i];
     }
     return answer;
 }
