@@ -18,3 +18,28 @@ string solution(int n) {
     
     return answer;
 }
+
+/*
+//다른사람의 풀이 및 새로운 arr사용법
+#include <vector>
+#include <string>
+using namespace std;
+
+string solution(int n){
+	
+	string answer = "";
+	int a;
+
+	while(n > 0){
+		a = n % 3;
+		n = n / 3;
+
+		if(a == 0)
+			n -= 1;
+
+		answer = "412"[a] + answer; //이부분 따로 공부해보기
+	}
+
+	return answer;
+}
+*/
