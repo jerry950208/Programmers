@@ -11,3 +11,14 @@ int solution(vector<int> numbers) {
     
     return answer;
 }
+
+/*
+	//다른사람 풀이
+
+	#include <bits/stdc++.h>
+	using namespace std;
+
+	int solution(vector<int> numbers){
+		return 45 - accumulate(numbers.begin(), numbers.end(), 0);
+	}
+*/
