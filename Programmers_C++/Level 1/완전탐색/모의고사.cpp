@@ -10,23 +10,33 @@
 - 문제의 정답은 1, 2, 3, 4, 5 중 하나입니다
 - 가장 높은 점수를 받은 사람이 여럿일경우, return 하는 값을 오름차순 정렬해주세요
 */
-
 #include <string>
 #include <vector>
+
 using namespace std;
 
-
-int give_up_1[5] = {1, 2, 3, 4, 5};
-int give_up_2[8] = {2, 1, 2, 3, 2, 4, 2, 5};
-int give_up_3[10] = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
-
-
 vector<int> solution(vector<int> answers) {
+    
+    int give_up_1[5] = {1, 2, 3, 4, 5};
+    int give_up_2[8] = {2, 1, 2, 3, 2, 4, 2, 5};
+    int give_up_3[10] = {3, 3, 1, 1, 2, 2,4, 4, 5, 5};
+    
     vector<int> answer;
     
-	int score[3] = { 0 };
-	int high_score = 0;
-	
-
-	return answer;
+    int score[3] = {0, };
+    int high_score = 0;
+    
+    for(int i=0; i<answers.size(); i++){
+        if(answers[i] == give_up_1[i % 5])
+            score[0]++;
+        else if(answer[i] == give_up_2[i % 8])
+            score[1]++;
+        else if(answer[i] == give_up_3[i % 10])
+            score[2]++;
+    }
+    
+    int big = score[0] > score[1] ? score[0] : score[1];
+    answer.push_back(big > score[2] ? big : score[2]);
+    
+    return answer;
 }
