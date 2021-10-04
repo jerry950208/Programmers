@@ -15,6 +15,10 @@
 
 using namespace std;
 
+int max(int a, int b){
+    return a > b ? a : b;
+}
+
 vector<int> solution(vector<int> answers) {
     
     int give_up_1[5] = {1, 2, 3, 4, 5};
@@ -22,21 +26,21 @@ vector<int> solution(vector<int> answers) {
     int give_up_3[10] = {3, 3, 1, 1, 2, 2,4, 4, 5, 5};
     
     vector<int> answer;
-    
-    int score[3] = {0, };
+    vector<int> score(3);
     int high_score = 0;
     
     for(int i=0; i<answers.size(); i++){
-        if(answers[i] == give_up_1[i % 5])
-            score[0]++;
-        else if(answer[i] == give_up_2[i % 8])
-            score[1]++;
-        else if(answer[i] == give_up_3[i % 10])
+        if(answers[i] == give_up_1[i % 5]) score[0]++;
+        if(answers[i] == give_up_2[i % 8]) score[1]++;
+        if(answers[i] == give_up_3[i % 10])
             score[2]++;
     }
     
-    int big = score[0] > score[1] ? score[0] : score[1];
-    answer.push_back(big > score[2] ? big : score[2]);
+    high_score = max(max(score[0], score[1]), score[2]);
+    
+    for(int i=0; i<3; i++)
+        if(score[i] == high_score)
+            answer.push_back(i+1);
     
     return answer;
 }
