@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-
+#include <iosteam>
 using namespace std;
 
 int solution(int n, vector<int> lost, vector<int> reserve) {
@@ -41,4 +41,18 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
             continue;
     }
     return answer;
+}
+
+int main(void){
+	
+	vector<int> lost;
+	vector<int> reserve;
+	int n;
+
+	cin >> n;
+	lost.push_bakc(n);
+	
+	cin >> n;
+	reserve.push_back(n);
+	
 }
