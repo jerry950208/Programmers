@@ -1,3 +1,5 @@
+
+/*
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -18,5 +20,44 @@ int solution(vector<vector<int> > land)
                 tmp[i][j] = land[i]
         }
     }
+    return answer;
+}*/
+#include <string>
+#include <vector>
+using namespace std;
+
+int cmp(int a, int b){
+	
+    if(a >= b)
+        return a;
+    
+    else
+        return b;
+}
+
+int solution(vector<vector<int> > land){
+    int answer = 0;
+    vector<vector<int> > tmp;
+    int size = land.size();
+    
+  	tmp[0] = land[0];
+    
+    for(int i=1; i<size; i++){
+        for(int j=0; j<size; j++){
+            if(j == 0)
+                tmp[i][j] = tmp[i-1][j] + land[i-1][j+1];
+            
+            else if(j == size - 1)
+                tmp[i][j] = tmp[i-1][j] + land[i-1][j-1];
+            
+            else
+                tmp[i][j] = tmp[i-1][j] + cmp(land[i][j-1], land[i][j+1]);
+        }
+    }
+    
+    for(int i=0; i<size; i++)
+        if(answer < tmp[3][i])
+            answer = tmp[3][i];
+    
     return answer;
 }
