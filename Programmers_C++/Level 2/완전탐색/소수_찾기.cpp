@@ -46,7 +46,6 @@ int find_demical(int n){
         return 1;
 
 }
-
 int main(void){
 	int n;
 	while(1){
