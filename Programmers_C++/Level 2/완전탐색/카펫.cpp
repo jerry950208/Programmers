@@ -22,3 +22,26 @@ vector<int> solution(int brown, int yellow) {
     }
     return answer;
 }
+
+/*다른사람 풀이
+#include <string>
+#include <vector>
+using namespace std;
+
+vector<int> solution(int brown, int yellow){
+	
+	int len = brown / 2 + 2;
+	int w = len - 3;
+	int h = 3;
+
+	while(w >= h){
+
+		if(w * h == (brown + yellow)) break;
+
+		w--;
+		h++;
+	}
+
+	return vector<int>{w,h};
+}
+*/
