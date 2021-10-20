@@ -1,7 +1,16 @@
 #include <string>
 #include <vector>
-
 using namespace std;
+
+
+int func(int n){
+    if(n == 6) return 1;
+    else if(n == 5) return 2;
+    else if(n == 4) return 3;
+    else if(n == 3) return 4;
+    else if(n == 2) return 5;
+    else return 6;
+}
 
 vector<int> solution(vector<int> lottos, vector<int> win_nums) {
     vector<int> answer;
@@ -22,18 +31,24 @@ vector<int> solution(vector<int> lottos, vector<int> win_nums) {
         }
     }
     
+    answer.push_back(func(cnt+win));
+    answer.push_back(func(win));
+    /*
     if(cnt+win == 6)
         answer.push_back(1);
     else if(cnt+win == 0)
         answer.push_back(6);
     else
         answer.push_back(7-(cnt+win));
+    
     if(win == 0)
         answer.push_back(6);
     else if(win == 6)
         answer.push_back(1);
     else
         answer.push_back(7-win);
-	
+    //answer.push_back(7-(cnt+win));
+    //answer.push_back(7-win);   
+	*/
     return answer;
 }
