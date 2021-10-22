@@ -4,41 +4,28 @@
 using namespace std;
 
 int solution(int n, vector<int> lost, vector<int> reserve) {
-    int answer = n - lost.size();
-    vector<int> own(n+1,1);
-    int lost_check[n+1];
+    int answer = 0;
+    int cnt = 0;
+    bool flag[n];
     
-    for(int i=0; i<n+1; i++)
-        lost_check[i] = 0;
-        
+    for(int i=0; i<reserve.size(); i++)
+        flag[reserve[i]] = true;
+	
     for(int i=0; i<lost.size(); i++){
-        own[lost[i]] = 0;
-     	lost_check[lost[i]] = 1;
+        
+        if(flag[lost[i]] == true)
+            flag[lost[i]] = false;
+        
+        else if(flag[lost[i]-1] == true){
+            cnt++;
+            flag[lost[i]-1] = false;
+        }
+        else if(flag[lost[i]+1] == true){
+            cnt++;
+            flag[lost[i]+1] = false;
+        }
     }
     
-    for(int i=0; i<reserve.size(); i++){
-        if(lost_check[reserve[i]] == 1)
-            own[reserve[i]] = 1;
-        else
-        	own[reserve[i]] = 2;
-        
-    }
-    
-    for(int i=0; i<n; i++){
-        if(own[i] == 0 && own[i-1] == 2 && i != 0){
-            answer++;
-            own[i] = 1;
-            own[i-1] = 1;
-        }
-        
-        else if(own[i] == 0 && own[i+1] == 2 && i != n-1){
-            answer++;
-            own[i] = 1;
-            own[i+1] = 1;
-        }
-		
-        else
-            continue;
-    }
+    answer = n - lost.size() + cnt;
     return answer;
 }
